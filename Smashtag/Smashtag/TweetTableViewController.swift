@@ -124,7 +124,25 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+
+        if navigationController?.viewControllers == nil {
+        let stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop,
+                                                    target: self,
+                                                    action: #selector(TweetTableViewController.toRootViewController(_:)))
+            
+            if let rightBarButtonItem = navigationItem.rightBarButtonItem {
+                navigationItem.rightBarButtonItems = [stopBarButtonItem, rightBarButtonItem]
+            } else {
+                navigationItem.rightBarButtonItem = stopBarButtonItem
+            }
+            
+        }
+
     }
+    func toRootViewController(sender: UIBarButtonItem) {
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
+
     
     // MARK: - Navigation
     
@@ -151,4 +169,17 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             }
         }
     }
+}
+extension UINavigationController {
+    
+    ///Get previous view controller of the navigation stack
+    func previousViewController() -> UIViewController?{
+        
+        let lenght = self.viewControllers.count
+        
+        let previousViewController: UIViewController? = lenght >= 2 ? self.viewControllers[lenght-2] : nil
+        
+        return previousViewController
+    }
+    
 }
