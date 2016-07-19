@@ -21,10 +21,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     
     var searchText: String? {
         didSet {
+            guard let searchText = searchText where searchText != "" else {return}
             tweets.removeAll()
             lastTwitterRequest = nil
             searchForTweets()
             title = searchText
+            RecentSearches.add(searchText)
         }
     }
     
@@ -124,7 +126,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-
+        
+        if searchText == nil {searchText = RecentSearches.searches.last}
+        searchTextField.text = searchText
+     
         if navigationController?.viewControllers == nil {
         let stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop,
                                                     target: self,
@@ -137,10 +142,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             }
             
         }
-
     }
     func toRootViewController(sender: UIBarButtonItem) {
         navigationController?.popToRootViewControllerAnimated(true)
+     
     }
 
     
@@ -169,17 +174,4 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             }
         }
     }
-}
-extension UINavigationController {
-    
-    ///Get previous view controller of the navigation stack
-    func previousViewController() -> UIViewController?{
-        
-        let lenght = self.viewControllers.count
-        
-        let previousViewController: UIViewController? = lenght >= 2 ? self.viewControllers[lenght-2] : nil
-        
-        return previousViewController
-    }
-    
 }

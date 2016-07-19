@@ -135,15 +135,16 @@ class MentionsTableViewController: UITableViewController {
     
     @IBAction private func toRootViewController(sender: UIBarButtonItem) {
         navigationController?.popToRootViewControllerAnimated(true)
-    }
+           }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegueWithIdentifier(identifier: String?,
+                                                     sender: AnyObject?) -> Bool {
         if identifier == Storyboard.KeywordSegue {
             if let cell = sender as? UITableViewCell,
                let indexPath =  tableView.indexPathForCell(cell),
                let urlString = cell.textLabel?.text,
                let url = NSURL(string:urlString)
-                                     where mentionSections[indexPath.section].type == "URLs" {
+                        where mentionSections[indexPath.section].type == "URLs" {
      
                 let safariVC = SFSafariViewController(URL: url)
                 presentViewController(safariVC, animated: true, completion: nil)
@@ -169,6 +170,7 @@ class MentionsTableViewController: UITableViewController {
             } else if identifier == Storyboard.ImageSegue {
                 if let ivc = segue.destinationViewController as? ImageViewController,
                     let cell = sender as? ImageTableViewCell {
+                    
                     ivc.imageURL = cell.imageUrl
                     ivc.title = title
                     
