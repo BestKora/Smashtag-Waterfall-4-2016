@@ -127,13 +127,14 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        if searchText == nil {searchText = RecentSearches.searches.last}
+        if searchText == nil {searchText = RecentSearches.searches.first}
         searchTextField.text = searchText
      
         if navigationController?.viewControllers == nil {
+            
         let stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop,
-                                                    target: self,
-                                                    action: #selector(TweetTableViewController.toRootViewController(_:)))
+                    target: self,
+                    action: #selector(TweetTableViewController.toRootViewController(_:)))
             
             if let rightBarButtonItem = navigationItem.rightBarButtonItem {
                 navigationItem.rightBarButtonItems = [stopBarButtonItem, rightBarButtonItem]
@@ -143,6 +144,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
             
         }
     }
+    
     func toRootViewController(sender: UIBarButtonItem) {
         navigationController?.popToRootViewControllerAnimated(true)
      

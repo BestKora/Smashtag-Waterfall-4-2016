@@ -48,13 +48,16 @@ class RecentsTableViewController: UITableViewController {
     }
     
     // Переопределяем поддержку редактирования table view.
+    
     override func tableView(tableView: UITableView,
-                        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
-                                        forRowAtIndexPath indexPath: NSIndexPath) {
+      commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+          forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
             // уничтожаем строку из data source
             
             RecentSearches.removeAtIndex(indexPath.row)
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

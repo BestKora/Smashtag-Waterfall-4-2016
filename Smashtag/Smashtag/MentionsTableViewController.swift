@@ -134,21 +134,22 @@ class MentionsTableViewController: UITableViewController {
     // MARK: - Navitation
     
     @IBAction private func toRootViewController(sender: UIBarButtonItem) {
+        
         navigationController?.popToRootViewControllerAnimated(true)
-           }
+    }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?,
-                                                     sender: AnyObject?) -> Bool {
+                                                   sender: AnyObject?) -> Bool {
         if identifier == Storyboard.KeywordSegue {
             if let cell = sender as? UITableViewCell,
-               let indexPath =  tableView.indexPathForCell(cell),
-               let urlString = cell.textLabel?.text,
-               let url = NSURL(string:urlString)
-                        where mentionSections[indexPath.section].type == "URLs" {
-     
-                let safariVC = SFSafariViewController(URL: url)
-                presentViewController(safariVC, animated: true, completion: nil)
-                
+               let indexPath =  tableView.indexPathForCell(cell)
+                         where mentionSections[indexPath.section].type == "URLs" {
+                /*    if let urlString = cell.textLabel?.text,
+                         let url = NSURL(string:urlString) {
+                             let safariVC = SFSafariViewController(URL: url)
+                             presentViewController(safariVC, animated: true, completion: nil)
+                } */
+                performSegueWithIdentifier(Storyboard.WebSegue, sender: sender)
                 return false
             }
         }
@@ -175,7 +176,17 @@ class MentionsTableViewController: UITableViewController {
                     ivc.title = title
                     
                 }
+            }else if identifier == Storyboard.WebSegue {
+                if let wvc = segue.destinationViewController as? WebViewController {
+                    if let cell = sender as? UITableViewCell {
+                        if let url = cell.textLabel?.text {
+                            
+                            wvc.URL = NSURL(string: url)
+                        }
+                    }
+                }
             }
+
         }
     }
     

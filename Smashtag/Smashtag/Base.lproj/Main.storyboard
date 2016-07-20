@@ -15,14 +15,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Twitter Search Text" textAlignment="natural" minimumFontSize="17" id="5hy-Uk-XFG">
-                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="154" id="k1M-Tv-biK" customClass="TweetTableViewCell" customModule="Smashtag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="122" width="600" height="154"/>
+                                <rect key="frame" x="0.0" y="58" width="600" height="154"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="k1M-Tv-biK" id="EYs-gE-X6M">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="153.5"/>
@@ -123,7 +123,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Keyword Cell" textLabel="noJ-ZL-sWZ" style="IBUITableViewCellStyleDefault" id="iz9-wi-FYe">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iz9-wi-FYe" id="2iQ-Pz-Bv7">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -139,11 +139,11 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Klq-KV-KxV" kind="show" identifier="From Keyword" id="wQt-jg-9Tj"/>
+                                    <segue destination="Klq-KV-KxV" kind="show" identifier="From Keyword" id="eQ7-7J-xeS"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Image Cell" rowHeight="291" id="eRg-7p-oeD" customClass="ImageTableViewCell" customModule="Smashtag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="600" height="291"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="291"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eRg-7p-oeD" id="zqt-Pm-abm">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="290.5"/>
@@ -184,6 +184,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="vlH-4P-Isb" kind="show" identifier="Show URL" id="p4G-Ed-zRW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGU-YG-cMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,7 +204,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUb-UE-VRN">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mUb-UE-VRN">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </scrollView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cX8-lk-0a0">
@@ -239,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBp-no-akX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4418" y="1014"/>
+            <point key="canvasLocation" x="4430" y="1029"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="r1f-Pf-oNb">
@@ -338,8 +341,69 @@
             </objects>
             <point key="canvasLocation" x="2987" y="1020"/>
         </scene>
+        <!--Web View-->
+        <scene sceneID="Wcp-0X-e3n">
+            <objects>
+                <viewController id="vlH-4P-Isb" customClass="WebViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="N35-1T-QNw"/>
+                        <viewControllerLayoutGuide type="bottom" id="9eS-Qb-jqv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QLv-G6-efE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNH-jC-kNa">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ac3-x5-KqF">
+                                <rect key="frame" x="282" y="281" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ac3-x5-KqF" firstAttribute="centerX" secondItem="DNH-jC-kNa" secondAttribute="centerX" id="Kvs-tQ-KEy"/>
+                            <constraint firstItem="DNH-jC-kNa" firstAttribute="top" secondItem="QLv-G6-efE" secondAttribute="top" id="PsW-fI-tgW"/>
+                            <constraint firstItem="DNH-jC-kNa" firstAttribute="centerX" secondItem="Ac3-x5-KqF" secondAttribute="centerX" id="Sni-hi-miE"/>
+                            <constraint firstItem="DNH-jC-kNa" firstAttribute="leading" secondItem="QLv-G6-efE" secondAttribute="leading" id="V41-OG-nXf"/>
+                            <constraint firstItem="Ac3-x5-KqF" firstAttribute="centerY" secondItem="QLv-G6-efE" secondAttribute="centerY" id="ZFj-qC-hWN"/>
+                            <constraint firstItem="Ac3-x5-KqF" firstAttribute="centerX" secondItem="QLv-G6-efE" secondAttribute="centerX" id="a1s-vv-FHI"/>
+                            <constraint firstAttribute="centerX" secondItem="Ac3-x5-KqF" secondAttribute="centerX" id="gJM-b0-MmW"/>
+                            <constraint firstItem="DNH-jC-kNa" firstAttribute="bottom" secondItem="9eS-Qb-jqv" secondAttribute="top" id="kPL-hc-8kc"/>
+                            <constraint firstItem="Ac3-x5-KqF" firstAttribute="centerX" secondItem="QLv-G6-efE" secondAttribute="centerX" id="mOL-ZB-YD4"/>
+                            <constraint firstAttribute="centerY" secondItem="Ac3-x5-KqF" secondAttribute="centerY" id="n0B-T9-EZD"/>
+                            <constraint firstItem="Ac3-x5-KqF" firstAttribute="centerY" secondItem="QLv-G6-efE" secondAttribute="centerY" id="ud3-6h-ZgB"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Sni-hi-miE"/>
+                                <exclude reference="a1s-vv-FHI"/>
+                                <exclude reference="gJM-b0-MmW"/>
+                                <exclude reference="n0B-T9-EZD"/>
+                                <exclude reference="ud3-6h-ZgB"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Web View" id="17j-Db-0fc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="F99-sl-eeN">
+                            <connections>
+                                <action selector="toRootViewController:" destination="vlH-4P-Isb" id="3wR-s8-VBp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="spinner" destination="Ac3-x5-KqF" id="P9w-d0-Enu"/>
+                        <outlet property="webView" destination="DNH-jC-kNa" id="JjA-qI-50h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7xM-wN-sIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4404" y="-403"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="iJ6-pa-jCg"/>
+        <segue reference="eQ7-7J-xeS"/>
     </inferredMetricsTieBreakers>
 </document>
