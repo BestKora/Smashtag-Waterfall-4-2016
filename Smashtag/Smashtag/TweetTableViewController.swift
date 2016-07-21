@@ -13,20 +13,20 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
 {
     // MARK: Model
 
-    var tweets = [Array<Twitter.Tweet>]() {
+    var tweets = [Array<Twitter.Tweet>](){
         didSet {
             tableView.reloadData()
         }
     }
-    
-    var searchText: String? {
+   
+    var searchText: String? = RecentSearches.searches.first ?? "#stanford"{
         didSet {
-            guard let searchText = searchText where searchText != "" else {return}
-            tweets.removeAll()
             lastTwitterRequest = nil
+            searchTextField?.text = searchText
+            tweets.removeAll()
             searchForTweets()
             title = searchText
-            RecentSearches.add(searchText)
+            RecentSearches.add(searchText!)
         }
     }
     
@@ -43,7 +43,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     
     private var lastTwitterRequest: Twitter.Request?
 
-    private func searchForTweets()
+    @IBAction private func searchForTweets(sender: UIRefreshControl?)
     {
         if let request = twitterRequest {
             lastTwitterRequest = request
@@ -52,19 +52,22 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
                     if request == weakSelf?.lastTwitterRequest {
                         if !newTweets.isEmpty {
                             weakSelf?.tweets.insert(newTweets, atIndex: 0)
-                        }
+                             weakSelf?.tableView.reloadData()
+                            sender?.endRefreshing()
+                            }
                     }
-                    weakSelf?.refreshControl?.endRefreshing()
+                    sender?.endRefreshing()
                 }
             }
         } else {
-            self.refreshControl?.endRefreshing()
+            sender?.endRefreshing()
         }
     }
     
     
-    @IBAction func refresh(sender: UIRefreshControl) {
-        searchForTweets()
+    private func searchForTweets () {
+        refreshControl?.beginRefreshing()
+        searchForTweets(refreshControl)
     }
     
     // MARK: UITableViewDataSource
@@ -86,6 +89,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     private struct Storyboard {
         static let TweetCellIdentifier = "Tweet"
         static let MentionsIdentifier = "Show Mentions"
+         static let ImagesIdentifier = "Show Images"
     }
 
     override func tableView(tableView: UITableView,
@@ -121,16 +125,21 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     }
     
     // MARK: View Controller Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+ 
+          if tweets.count == 0 {
+             searchForTweets()
+        }
         
-        if searchText == nil {searchText = RecentSearches.searches.first}
-        searchTextField.text = searchText
-     
-        if navigationController?.viewControllers == nil {
+        let imageButton = UIBarButtonItem(barButtonSystemItem: .Camera,
+                                          target: self,
+                                          action: #selector(TweetTableViewController.showImages(_:)))
+         navigationItem.rightBarButtonItems = [imageButton]
+        if navigationController?.viewControllers == nil  ||  navigationController?.viewControllers.count > 2 {
             
         let stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop,
                     target: self,
@@ -148,6 +157,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
     func toRootViewController(sender: UIBarButtonItem) {
         navigationController?.popToRootViewControllerAnimated(true)
      
+    }
+    
+    func showImages(sender: UIBarButtonItem) {
+        performSegueWithIdentifier(Storyboard.ImagesIdentifier, sender: sender)
     }
 
     
@@ -173,6 +186,12 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
                 let mtvc = segue.destinationViewController as? MentionsTableViewController,
                 let tweetCell = sender as? TweetTableViewCell {
                 mtvc.tweet = tweetCell.tweet
+                
+            } else if identifier == Storyboard.ImagesIdentifier {
+                if let icvc = segue.destinationViewController as? ImageCollectionViewController {
+                    icvc.tweets = tweets
+                    icvc.title = "Images: \(searchText!)"
+                }
             }
         }
     }

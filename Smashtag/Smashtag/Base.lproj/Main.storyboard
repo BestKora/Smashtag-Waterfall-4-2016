@@ -102,16 +102,17 @@
                             </fragment>
                         </attributedString>
                         <connections>
-                            <action selector="refresh:" destination="Klq-KV-KxV" eventType="valueChanged" id="zfV-qo-r4w"/>
+                            <action selector="searchForTweets:" destination="Klq-KV-KxV" eventType="valueChanged" id="hMh-ry-5ga"/>
                         </connections>
                     </refreshControl>
                     <connections>
                         <outlet property="searchTextField" destination="5hy-Uk-XFG" id="vJ2-T3-hUV"/>
+                        <segue destination="NjN-K7-hWp" kind="show" identifier="Show Images" id="Qeu-Zq-yt4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NJc-3T-BNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3662" y="277"/>
+            <point key="canvasLocation" x="3688" y="349"/>
         </scene>
         <!--Mensions-->
         <scene sceneID="mYE-YE-Qkv">
@@ -190,7 +191,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fGU-YG-cMR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4404" y="277"/>
+            <point key="canvasLocation" x="4488" y="369"/>
         </scene>
         <!--Image-->
         <scene sceneID="uoA-zS-Pqf">
@@ -242,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NBp-no-akX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4430" y="1029"/>
+            <point key="canvasLocation" x="5156" y="-393"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="r1f-Pf-oNb">
@@ -279,7 +280,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C4D-Cg-k6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2987" y="277"/>
+            <point key="canvasLocation" x="2977" y="349"/>
         </scene>
         <!--Recents-->
         <scene sceneID="DTM-W4-g82">
@@ -320,7 +321,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qqi-1v-bxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3662" y="1020"/>
+            <point key="canvasLocation" x="3665" y="1110"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iEM-Pj-6dc">
@@ -339,7 +340,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMz-6I-fh7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2987" y="1020"/>
+            <point key="canvasLocation" x="2997" y="1092"/>
         </scene>
         <!--Web View-->
         <scene sceneID="Wcp-0X-e3n">
@@ -354,7 +355,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DNH-jC-kNa">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ac3-x5-KqF">
@@ -400,7 +401,72 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7xM-wN-sIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4404" y="-403"/>
+            <point key="canvasLocation" x="4464" y="-399"/>
+        </scene>
+        <!--Images-->
+        <scene sceneID="kwF-TQ-FW7">
+            <objects>
+                <collectionViewController id="NjN-K7-hWp" customClass="ImageCollectionViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="7zY-V3-Mg2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="hP6-Ae-3gm">
+                            <size key="itemSize" width="120" height="120"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="1" minY="1" maxX="1" maxY="1"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Image Cell" id="rSY-gh-8rP" customClass="ImageCollectionViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="1" y="1" width="120" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6EC-gJ-GrI">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                        </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-tJ-Zlq">
+                                            <rect key="frame" x="50" y="50" width="20" height="20"/>
+                                            <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="6EC-gJ-GrI" firstAttribute="leading" secondItem="rSY-gh-8rP" secondAttribute="leading" id="Sdp-fO-E0b"/>
+                                    <constraint firstItem="6EC-gJ-GrI" firstAttribute="top" secondItem="rSY-gh-8rP" secondAttribute="top" id="WiI-Nk-kjR"/>
+                                    <constraint firstItem="zU1-tJ-Zlq" firstAttribute="centerX" secondItem="6EC-gJ-GrI" secondAttribute="centerX" id="dyo-Wt-QdN"/>
+                                    <constraint firstAttribute="trailing" secondItem="6EC-gJ-GrI" secondAttribute="trailing" id="eb0-Pd-3Mg"/>
+                                    <constraint firstItem="zU1-tJ-Zlq" firstAttribute="centerY" secondItem="6EC-gJ-GrI" secondAttribute="centerY" id="s7H-Kx-N8u"/>
+                                    <constraint firstAttribute="bottom" secondItem="6EC-gJ-GrI" secondAttribute="bottom" id="thO-ej-Dv8"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="imageView" destination="6EC-gJ-GrI" id="Pae-Po-RZZ"/>
+                                    <outlet property="spinner" destination="zU1-tJ-Zlq" id="E5v-9L-wDf"/>
+                                    <segue destination="Klq-KV-KxV" kind="show" identifier="Show Tweet" id="xLf-vI-oTV"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="NjN-K7-hWp" id="6yK-29-br9"/>
+                            <outlet property="delegate" destination="NjN-K7-hWp" id="IBf-5y-rYE"/>
+                        </connections>
+                    </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Images" id="15s-Rr-kXh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Pzs-DX-MSc">
+                            <connections>
+                                <action selector="toRootViewController:" destination="NjN-K7-hWp" id="N8p-m7-2sM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p63-IO-lFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3665" y="-405"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
