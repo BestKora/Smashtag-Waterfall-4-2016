@@ -424,7 +424,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6EC-gJ-GrI">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6EC-gJ-GrI">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                         </imageView>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zU1-tJ-Zlq">
@@ -458,7 +458,7 @@
                     <navigationItem key="navigationItem" title="Images" id="15s-Rr-kXh">
                         <barButtonItem key="rightBarButtonItem" systemItem="stop" id="Pzs-DX-MSc">
                             <connections>
-                                <action selector="toRootViewController:" destination="NjN-K7-hWp" id="N8p-m7-2sM"/>
+                                <action selector="toRootViewController:" destination="NjN-K7-hWp" id="AJR-Ao-z6J"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
