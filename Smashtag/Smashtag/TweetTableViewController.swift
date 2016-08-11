@@ -134,7 +134,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
           if tweets.count == 0 {
              searchForTweets()
         }
-        
+        if RecentSearches.searches.first == nil {
+            RecentSearches.add(searchText!)
+        }
+
         let imageButton = UIBarButtonItem(barButtonSystemItem: .Camera,
                                           target: self,
                                           action: #selector(TweetTableViewController.showImages(_:)))
