@@ -130,31 +130,36 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
- 
-          if tweets.count == 0 {
-             searchForTweets()
+        
+        if tweets.count == 0 {
+            searchForTweets()
         }
         if RecentSearches.searches.first == nil {
             RecentSearches.add(searchText!)
         }
-
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //------- Stop Button--------
         let imageButton = UIBarButtonItem(barButtonSystemItem: .Camera,
                                           target: self,
                                           action: #selector(TweetTableViewController.showImages(_:)))
-         navigationItem.rightBarButtonItems = [imageButton]
-        if navigationController?.viewControllers == nil  ||  navigationController?.viewControllers.count > 2 {
+        navigationItem.rightBarButtonItems = [imageButton]
+        if navigationController?.viewControllers.count > 1 {
             
-        let stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop,
-                    target: self,
-                    action: #selector(TweetTableViewController.toRootViewController(_:)))
+            let stopBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Stop,
+                                                    target: self,
+                                                    action: #selector(TweetTableViewController.toRootViewController(_:)))
             
             if let rightBarButtonItem = navigationItem.rightBarButtonItem {
                 navigationItem.rightBarButtonItems = [stopBarButtonItem, rightBarButtonItem]
             } else {
                 navigationItem.rightBarButtonItem = stopBarButtonItem
             }
-            
         }
+        //-----------
     }
     
     func toRootViewController(sender: UIBarButtonItem) {
@@ -166,7 +171,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate
         performSegueWithIdentifier(Storyboard.ImagesIdentifier, sender: sender)
     }
 
-    
     // MARK: - Navigation
     
     override func shouldPerformSegueWithIdentifier(identifier: String?,
